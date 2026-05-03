@@ -16,7 +16,8 @@ connection.connect();
 router.get('/example1/user/:id', (req,res) => {
     let userId = req.params.id;
     let query = {
-        sql : "SELECT * FROM users WHERE id=" + userId
+        sql : "SELECT * FROM users WHERE id=?",
+        values: [userId]
     }
     connection.query(query,(err, result) => {
         res.json(result);
